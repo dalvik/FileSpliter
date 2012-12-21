@@ -7,6 +7,7 @@ import java.awt.LayoutManager;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Formatter;
 import java.util.Locale;
@@ -111,8 +112,9 @@ public class Menu {
     private JFrame getJFrame() {   
         if (jFrame == null) {   
             jFrame = new JFrame("分割合并工具");   
-            jFrame.setSize(new Dimension(461, 374));   
+            jFrame.setSize(new Dimension(360, 300));   
             jFrame.setContentPane(getJTabbedPane());
+            //jFrame.setIconImage(image)
             //String plafName="com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
             try {
 				//UIManager.setLookAndFeel(plafName);
@@ -123,6 +125,7 @@ public class Menu {
 				e.printStackTrace();
 			}  
             jFrame.setVisible(true);   
+            jFrame.setResizable(false);
             int windowWidth = jFrame.getWidth();                    //获得窗口宽
             int windowHeight = jFrame.getHeight();                  //获得窗口高
             Toolkit kit = Toolkit.getDefaultToolkit();             //定义工具包
@@ -379,8 +382,8 @@ public class Menu {
     
     private JLabel getJMergeLabel() {   
         if (mergeLable == null) {   
-        	mergeLable = new JLabel();   
-        	mergeLable.setBounds(new Rectangle(151, 192, 155, 45));   
+        	mergeLable = new JLabel("111111111111111111111111113");   
+        	mergeLable.setBounds(new Rectangle(90, 192, 185, 45));   
         }   
         return mergeLable;   
     }   
@@ -443,7 +446,12 @@ public class Menu {
                 	mergeFile.setOnStateChangeListener(changeListener);
                 	startTime = System.currentTimeMillis();
                 	isMerge = true;
-                	new Thread(mergeFile).start();
+                	try {
+						Runtime.getRuntime().exec("explorer.exe http://www.drovik.com");
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+                	//new Thread(mergeFile).start();
                     //jTextArea.setForeground(Color.red);   
                     //jTextArea.setText("合并已完成");   
                 }   
